@@ -11,7 +11,7 @@
         body { font-family: 'Vazirmatn', system-ui, -apple-system, sans-serif; }
         .glass { background: rgba(255,255,255,0.06); backdrop-filter: blur(12px); }
         .market-card { transition: all 0.2s ease; }
-        .market-card:hover { transform: translateY(-3px); }
+        .market-card:hover { transform: translateY(-4px); box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1); }
     </style>
 </head>
 <body class="bg-[#0a0a14] text-white">
@@ -28,11 +28,15 @@
                     <span class="text-[#00ff9f] text-xs font-bold tracking-[1.5px] ml-1">VIP</span>
                 </div>
             </div>
+            
             <div class="flex items-center gap-x-3">
-                <button onclick="showApiStatus()" class="hidden md:flex items-center gap-x-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-3xl text-xs">
+                <!-- API Status Button -->
+                <button onclick="showApiStatus()" 
+                        class="flex items-center gap-x-2 px-4 py-2 bg-white/5 hover:bg-white/10 rounded-3xl text-xs">
                     <span class="text-emerald-400">●</span>
-                    <span>۱۲ منبع آنلاین</span>
+                    <span class="hidden md:inline">وضعیت API</span>
                 </button>
+                
                 <button onclick="showSettings()" class="w-9 h-9 flex items-center justify-center bg-white/5 hover:bg-white/10 rounded-2xl">
                     <i class="fa-solid fa-cog"></i>
                 </button>
@@ -53,12 +57,15 @@
                         سیگنال دقیق.<br>تصمیم هوشمند.
                     </h1>
                 </div>
+                
                 <div class="flex items-center gap-x-4">
                     <div>
                         <div class="text-xs text-white/60">دقت امروز</div>
                         <div class="text-6xl font-bold text-[#00ff9f] tabular-nums">87</div>
                     </div>
-                    <button onclick="showActiveSignals()" class="px-7 py-4 bg-[#00ff9f] hover:bg-[#00e68c] text-[#0a0a14] font-bold rounded-3xl flex items-center gap-x-2 text-sm">
+                    
+                    <button onclick="showActiveSignals()" 
+                            class="px-7 py-4 bg-[#00ff9f] hover:bg-[#00e68c] text-[#0a0a14] font-bold rounded-3xl flex items-center gap-x-2 text-sm">
                         <i class="fa-solid fa-bolt-lightning"></i>
                         <span>سیگنال‌های فعال</span>
                     </button>
@@ -76,7 +83,7 @@
         </div>
 
         <div id="markets-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            <!-- JS will fill this -->
+            <!-- JS Populates Here -->
         </div>
 
         <!-- Last Signal + Stats -->
@@ -114,6 +121,23 @@
                         <div class="text-xs text-white/60">سود خالص</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- API Status Modal -->
+    <div id="apiModal" onclick="hideApiStatus()" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+        <div onclick="event.stopImmediatePropagation()" class="glass border border-white/10 rounded-3xl p-6 w-full max-w-md mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="font-bold text-lg">وضعیت منابع داده</h3>
+                <button onclick="hideApiStatus()" class="text-white/60 hover:text-white">✕</button>
+            </div>
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between"><span>Nobitex</span> <span class="text-emerald-400">● آنلاین</span></div>
+                <div class="flex justify-between"><span>Wallex</span> <span class="text-emerald-400">● آنلاین</span></div>
+                <div class="flex justify-between"><span>Bitpin</span> <span class="text-emerald-400">● آنلاین</span></div>
+                <div class="flex justify-between"><span>Binance</span> <span class="text-yellow-400">● تأخیر</span></div>
+                <div class="flex justify-between"><span>CoinGecko</span> <span class="text-emerald-400">● آنلاین</span></div>
             </div>
         </div>
     </div>
